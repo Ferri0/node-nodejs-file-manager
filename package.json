@@ -1,0 +1,24 @@
+{
+  "name": "nodejs-file-manager",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ferri0/node-nodejs-file-manager.git"
+  },
+  "keywords": [
+    "nodejs",
+    "assignments",
+    "file-manager"
+  ],
+  "author": "Ferri0",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ferri0/node-nodejs-file-manager/issues"
+  },
+  "homepage": "https://github.com/Ferri0/node-nodejs-file-manager#readme"
+}
