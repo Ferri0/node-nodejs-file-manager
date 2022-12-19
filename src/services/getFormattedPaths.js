@@ -9,9 +9,10 @@ import { isDirectory as checkIsDirectory } from './isDirectory.js';
  * @param {string} pathToFile - Path to target file, must contain filename
  * @param {string} destinationPath - Destination path, might contain filename with extension or lead to folder
  * @param {string} [targetExtension] - In some cases we need to change extension of destination file, it can be specified here
+ * @param {boolean} [decompress] - Indicates that decompression operation performing
  * @returns {Promise<{formattedPathToFile, formattedDestinationPath: (string|*)}>}
  */
-export const getFormattedPaths = async ({ pathToFile, destinationPath, targetExtension }) => {
+export const getFormattedPaths = async ({ pathToFile, destinationPath, targetExtension, decompress }) => {
     const destinationDirectory = dirname(destinationPath);
 
     const destinationFilename = basename(destinationPath);
@@ -45,9 +46,17 @@ export const getFormattedPaths = async ({ pathToFile, destinationPath, targetExt
         }
     }
 
+    if (decompress) {
+        const destinationExtension = extname(formattedDestinationPath);
+
+        if (destinationExtension === '.bc') {
+            formattedDestinationPath = formattedDestinationPath.replace(destinationExtension, '.txt');
+        }
+    }
+
     const isFormattedDestinationFileExist = await checkIsFileExist(formattedDestinationPath);
 
-    if (isFormattedDestinationFileExist) {
+    if (isFormattedDestinationFileExist && !isDestinationIsDirectory) {
         throw new Error();
     }
 

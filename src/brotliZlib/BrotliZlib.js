@@ -31,6 +31,7 @@ export class BrotliZlib {
             const { formattedPathToFile, formattedDestinationPath } = await getFormattedPaths({
                 pathToFile,
                 destinationPath,
+                decompress: true
             });
 
             const readStream = createReadStream(formattedPathToFile);
