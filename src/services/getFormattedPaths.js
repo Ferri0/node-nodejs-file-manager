@@ -37,8 +37,6 @@ export const getFormattedPaths = async ({ pathToFile, destinationPath, targetExt
         const destinationExtension = extname(formattedDestinationPath);
 
         if (targetExtension !== destinationExtension) {
-            console.log(formattedDestinationPath, destinationExtension);
-
             if (destinationExtension !== '') {
                 formattedDestinationPath = formattedDestinationPath.replace(destinationExtension, '');
             }
