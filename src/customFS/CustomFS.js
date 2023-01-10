@@ -1,8 +1,7 @@
 import os from 'os';
 import { dirname, join } from 'node:path';
-import { readdir, stat, rename } from 'fs/promises';
-import { appendFile, rm } from 'node:fs/promises';
-import { createReadStream, createWriteStream } from 'node:fs';
+import { appendFile, rm, readdir, stat, rename } from 'node:fs/promises';
+import { createReadStream, createWriteStream, watch } from 'node:fs';
 
 import { getSortedFolderContent } from '../services/getSortedFolderContent.js';
 import { isFileExist as checkIsFileExist } from '../services/isFileExists.js';
@@ -145,4 +144,14 @@ export class CustomFS {
             this.logger.logOperationFailedMessage();
         }
     };
+
+    watchFile = async (pathToFile) => {
+        try {
+            watch(pathToFile, 'utf-8').on('change', function () {
+                this.logger.log('File changed')
+            }.bind(this))
+        } catch {
+            this.logger.logOperationFailedMessage();
+        }
+    }
 }

@@ -28,6 +28,7 @@ export class Controller {
             cp: this.cp,
             mv: this.mv,
             rm: this.rm,
+            watch: this.watch,
             os: this.os,
             hash: this.hash,
             compress: this.compress,
@@ -143,6 +144,16 @@ export class Controller {
             this.logger.logInvalidInputMessage();
         }
     };
+
+    watch = async (cliArguments) => {
+        const requiredArgument = cliArguments[0];
+
+        if (requiredArgument) {
+            await this.customFS.watchFile(requiredArgument);
+        } else {
+            this.logger.logInvalidInputMessage();
+        }
+    }
 
     os = async (cliArguments) => {
         const requiredArgument = cliArguments[0];
